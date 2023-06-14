@@ -8,7 +8,7 @@ import EqualButton from './components/EqualButton.jsx';
 import ACButton from './components/ACButton';
 import keyDownHandler from './utils/keyDownHandler';
 import { updatePrimary, updateSecondary, updateFormula, updatePrimaryReset } from './reducers/displaySlice';
-
+import Footer from './components/Footer';
 
 function App() {
 
@@ -79,7 +79,7 @@ function App() {
           <EqualButton id='equals' buttonName='=' />
         </div>
       </div>
-      <footer>by Alex Wang</footer>
+      <Footer />
     </>
   );
 }

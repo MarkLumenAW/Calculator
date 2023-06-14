@@ -14,12 +14,6 @@
   overflow: hidden;
 }
 
-footer {
-  font-size: 0.8rem;
-  margin: 0.5rem;
-  color: #888888;
-}
-
 .container-btn {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -36,7 +30,7 @@ footer {
   transition: all 0.2s ease-in-out;
 }
 
-.btn-gray{
+.btn-gray {
   background-color: rgb(132, 126, 124);
 }
 
@@ -103,4 +97,24 @@ footer {
   justify-content: flex-end;
   align-items: center;
   color: #d3d3d3;
+}
+
+.footer {
+  font-size: 0.8rem;
+  margin: 0.5rem;
+  color: #888888;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer span {
+  padding-left: 0.8rem;
+}
+
+.footer div {
+  padding-right: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
