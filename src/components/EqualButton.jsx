@@ -11,6 +11,7 @@ export default function EqualButton(props) {
   const primaryDisplay = useSelector(state => state.display.primary);
   const secondaryDisplay = useSelector(state => state.display.secondary);
   const formula = useSelector(state => state.display.formula);
+  const secondaryReset = useSelector(state => state.display.secondaryReset);
 
   const [click, setClick] = useState(false);
   const buttonStyle = clsx(
@@ -20,8 +21,10 @@ export default function EqualButton(props) {
   function handleClick() {
     clickChangeStyle(setClick);
 
+    if (secondaryReset) return;
+
     dispatch(updateSecondary({ value: secondaryDisplay + primaryDisplay + "=" }));
-    dispatch(updatePrimary({ value: calculate(formula + primaryDisplay)}));
+    dispatch(updatePrimary({ value: calculate(formula + primaryDisplay) }));
     dispatch(updateSecondaryReset({ value: true }));
   }
 

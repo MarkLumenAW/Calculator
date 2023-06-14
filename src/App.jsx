@@ -7,20 +7,48 @@ import { useSelector, useDispatch } from 'react-redux';
 import EqualButton from './components/EqualButton.jsx';
 import ACButton from './components/ACButton';
 import keyDownHandler from './utils/keyDownHandler';
+import { updatePrimary, updateSecondary, updateFormula, updatePrimaryReset } from './reducers/displaySlice';
 
 
 function App() {
 
+  const dispatch = useDispatch();
+
   const primaryDisplay = useSelector(state => state.display.primary);
   const secondaryDisplay = useSelector(state => state.display.secondary);
+  const formula = useSelector(state => state.display.formula);
+  const primaryReset = useSelector(state => state.display.primaryReset);
+  const secondaryReset = useSelector(state => state.display.secondaryReset);
+
+  function backspaceKeyHandler(event) {
+    switch (event.key.toUpperCase()) {
+      case 'BACKSPACE':
+        if (secondaryReset) {
+          dispatch(updateSecondary({ value: '' }));
+          dispatch(updateFormula({ value: '' }));
+          dispatch(updatePrimary({ value: '0' }));
+          return;
+        }
+        if (primaryDisplay.length > 1) {
+          dispatch(updatePrimary({ value: primaryDisplay.slice(0, -1) }));
+          return;
+        }
+        dispatch(updatePrimary({ value: '0' }));
+        dispatch(updatePrimaryReset({ value: false }));
+        return;
+    }
+  }
 
   useEffect(() => {
     window.addEventListener('keydown', keyDownHandler);
+    window.addEventListener('keyup', backspaceKeyHandler);
 
     return () => {
-      window.addEventListener('keydown', keyDownHandler);
+      window.removeEventListener('keydown', keyDownHandler);
+      window.removeEventListener('keyup', backspaceKeyHandler);
+
     };
-  }, []);
+  }, [primaryDisplay, secondaryDisplay, formula, secondaryReset, primaryReset]);
 
   return (
     <>
