@@ -24,7 +24,7 @@ export default function NumButton(props) {
       dispatch(updateSecondary({ value: "" }));
       dispatch(updateFormula({ value: "" }));
       dispatch(updateSecondaryReset({ value: false }));
-      dispatch(updatePrimary({ value: props.buttonName }));
+      dispatch(updatePrimary({ value: props.buttonName === "." ? "0." : props.buttonName }));
       return;
     }
 
