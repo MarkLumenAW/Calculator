@@ -49,7 +49,7 @@ export default function OperationButton(props) {
         dispatch(updatePrimaryReset({ value: true }));
         return;
       }
-   
+
       cutSecondaryDisplay = secondaryDisplay.slice(0, secondaryDisplay.length - 1);
       cutFormula = formula.slice(0, formula.length - 1);
 
@@ -59,7 +59,17 @@ export default function OperationButton(props) {
       return;
     }
 
-    dispatch(updateSecondary({ value: secondaryDisplay + primaryDisplay + props.buttonName }));
+    dispatch(updateSecondary({
+      value: primaryDisplay[primaryDisplay.length - 1] === "." ?
+        secondaryDisplay + primaryDisplay.slice(0, -1) + props.buttonName
+        : secondaryDisplay + primaryDisplay + props.buttonName
+    }));
+    dispatch(updatePrimary({
+      value:
+        primaryDisplay[primaryDisplay.length - 1] === "." ?
+          primaryDisplay.slice(0, -1)
+          : primaryDisplay
+    }));
     dispatch(updateFormula({ value: formula + primaryDisplay + props.operation }));
     dispatch(updatePrimaryReset({ value: true }));
   }

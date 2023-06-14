@@ -30,7 +30,7 @@ export default function NumButton(props) {
 
     if (primaryReset) {
       dispatch(updatePrimaryReset({ value: false }));
-      dispatch(updatePrimary({ value: props.buttonName }));
+      dispatch(updatePrimary({ value: props.buttonName === "." ? "0." : props.buttonName }));
       return;
     }
 

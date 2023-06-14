@@ -23,7 +23,11 @@ export default function EqualButton(props) {
 
     if (secondaryReset) return;
 
-    dispatch(updateSecondary({ value: secondaryDisplay + primaryDisplay + "=" }));
+    dispatch(updateSecondary({
+      value: primaryDisplay[primaryDisplay.length - 1] === "." ?
+        secondaryDisplay + primaryDisplay.slice(0, -1) + "="
+        : secondaryDisplay + primaryDisplay + "="
+    }));
     dispatch(updatePrimary({ value: calculate(formula + primaryDisplay) }));
     dispatch(updateSecondaryReset({ value: true }));
   }
