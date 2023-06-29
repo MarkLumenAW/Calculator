@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  background-color: FFFFFF;
+  background: radial-gradient(circle at center, #2C5364 5%, #203A43 50%, #0F2027 95%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
